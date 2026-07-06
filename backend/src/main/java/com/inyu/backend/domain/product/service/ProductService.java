@@ -108,4 +108,9 @@ public class ProductService {
     return value != null ? Long.parseLong(value) : 0L;
   }
 
+  @Transactional(readOnly = true)
+  public ProductResponse toProductResponse(Product product) {
+    return ProductResponse.from(product, getViewCount(product.getId()));
+  }
+
 }
